@@ -23,25 +23,7 @@ function App() {
     let modeloSel = e.target.value;
     setModelo(modeloSel)
   }
-
-  const equipos = [{
-    id: 0,
-    equipo: 'CELULAR'
-  },
-  {
-    id: 1,
-    equipo: 'TABLET'
-  },
-  {
-    id: 2,
-    equipo: 'NOTEBOOK'
-  },
-  {
-    id: 3,
-    equipo: 'PC ESCRITORIO'
-  }
-]
-  
+ 
   const default_iterator = string_brand => string_brand
 
   const marcasEquipos = [{
