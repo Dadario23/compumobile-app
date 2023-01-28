@@ -129,26 +129,27 @@ const modelosCelular = [{
 
       <select name="equipos" id='' onClick={handleDevice}>
         <option value="">EQUIPO A REPARAR</option>
-        {marcasEquipos.map((item)=>
-          <option key={item.id} value={item.equipo}>{item.equipo}</option>
-        )}
+        {
+          marcasEquipos.map((item) =>
+            <option key={item.id} value={item.equipo}>{item.equipo}</option>
+          )
+        }
       </select>
 
-
-
-
-
-
-    {
-        equipo ? (
-        <select name="marcas" id='' onClick={handleMarca}>
-        <option value="">MARCA</option>
         {
-          marcasEquipos.filter((item)=> item.equipo === equipo).map(item => item.marcas).filter((item, indice) => indice === 2 ).map(item => console.log(item))
+          equipo ? (
+            <select name="marcas" id='#' onClick={handleMarca}>
+            <option value="">MARCA</option>
+              {
+                marcasEquipos
+                  .filter((item)=> item.equipo === equipo) // return array []
+                  .map(item => item.marcas)
+                  .filter((item, indice) => indice === 2 )
+                  .map(item => console.log(item))
+              }
+            </select>
+          ) : null
         }
-        </select>
-      ) : null
-    }
 
 
 
