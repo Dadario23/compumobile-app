@@ -147,9 +147,9 @@ function App() {
   ]
 
   return (
-    <div className="container">
-      <select name="equipos" id="" onClick={handleDevice}>
-        <option value="">EQUIPO A REPARAR</option>
+    <div className='container'>
+      <select name='equipos' id='' onClick={handleDevice}>
+        <option value=''>EQUIPO A REPARAR</option>
         {marcasEquipos.map((item) => (
           <option key={item.id} value={item.equipo}>
             {item.equipo}
@@ -158,8 +158,8 @@ function App() {
       </select>
 
       {equipo ? (
-        <select name="marcas" id="#" onClick={handleMarca}>
-          <option value="">MARCA</option>
+        <select name='marcas' id='#' onClick={handleMarca}>
+          <option value=''>MARCA</option>
           {marcasEquipos
             .filter((item) => item.equipo === equipo) // return array []
             .map((item) => item.marcas)
@@ -168,8 +168,8 @@ function App() {
         </select>
       ) : null}
 
-      <select name="marcas" id="" onClick={handleModelo}>
-        {<option value="">MODELO</option>}
+      <select name='marcas' id='' onClick={handleModelo}>
+        {<option value=''>MODELO</option>}
         {modelosCelular.map((item) => (
           <option key={item.id} value={item.marca}>
             {item.marca}
