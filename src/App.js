@@ -7,7 +7,6 @@ function App() {
   const [marca, setMarca] = useState('');
   const [modelo, setModelo] = useState('');
 
-
   const handleDevice = (e) =>{
     let device = e.target.value;
 
@@ -42,29 +41,37 @@ function App() {
     equipo: 'PC ESCRITORIO'
   }
 ]
+  
+  const default_iterator = string_brand => string_brand
 
   const marcasEquipos = [{
     id: 0,
     equipo: 'CELULAR',
-    marcas: [{ marca: 'SAMSUNG'},{marca: 'MOTOROLA'},{marca: 'IPHONE'},{marca: 'LG'},{marca: 'ALCATEL'},{marca: 'XIAOMI'},{marca: 'NOBLEX'},{marca: 'BGH'},{marca: 'PCBOX'}]
+    marcas: [{ marca: 'SAMSUNG'},{marca: 'MOTOROLA'},{marca: 'IPHONE'},{marca: 'LG'},{marca: 'ALCATEL'},{marca: 'XIAOMI'},{marca: 'NOBLEX'},{marca: 'BGH'},{marca: 'PCBOX'}],
+
+    iterator: hash_brand => hash_brand.marca
   },
   {
     id: 1,
     equipo: 'TABLET',
-    marcas: ['SAMSUNG','ADMIRAL','LENOVO','PCBOX','ENOVA','AMAZON','INNJOO','AIWA','PHILCO','IPAD']
+    marcas: ['SAMSUNG','ADMIRAL','LENOVO','PCBOX','ENOVA','AMAZON','INNJOO','AIWA','PHILCO','IPAD'],
+
+    iterator: default_iterator
   },
   {
     id: 2,
     equipo: 'NOTEBOOK',
-    marcas: ['SAMSUNG','LENOVO','ASUS','DELL','ORIX','ENOVA','PCBOX','GADNIC','HP','EXO','BANGHO','ACER']
+    marcas: ['SAMSUNG','LENOVO','ASUS','DELL','ORIX','ENOVA','PCBOX','GADNIC','HP','EXO','BANGHO','ACER'],
+
+    iterator: default_iterator
   },
   {
     id: 3,
     equipo: 'PC ESCRITORIO',
-    marcas: ['GENERICA']
-  }
-  
+    marcas: ['GENERICA'],
 
+    iterator: default_iterator
+  }
 ]
 
 const modelosCelular = [{
