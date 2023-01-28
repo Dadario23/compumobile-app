@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import './index.css';
-import Probando from './Probando';
+import { useState } from 'react'
+import './index.css'
+import Probando from './Probando'
 
 function App() {
-  const [device, setDevice] = useState('');
-  const [marca, setMarca] = useState('');
-  const [modelo, setModelo] = useState('');
+  const [device, setDevice] = useState('')
+  const [marca, setMarca] = useState('')
+  const [modelo, setModelo] = useState('')
 
   const handleDevice = (e) => {
-    let device = e.target.value;
+    let device = e.target.value
 
-    setDevice(device);
-  };
+    setDevice(device)
+  }
 
   const handleMarca = (e) => {
-    console.log('selec de marca activado');
+    console.log('selec de marca activado')
     /* let marcaSel = e.target.value;
     setMarca(marcaSel) */
-  };
+  }
 
   const handleModelo = (e) => {
-    let modeloSel = e.target.value;
-    setModelo(modeloSel);
-  };
+    let modeloSel = e.target.value
+    setModelo(modeloSel)
+  }
 
-  const default_iterator = (string_brand) => string_brand;
+  const default_iterator = (string_brand) => string_brand
 
   const marcasEquipos = [
     {
@@ -89,7 +89,7 @@ function App() {
 
       iterator: default_iterator,
     },
-  ];
+  ]
 
   const modelosCelular = [
     {
@@ -144,7 +144,7 @@ function App() {
         },
       ],
     },
-  ];
+  ]
 
   return (
     <div className="container">
@@ -179,10 +179,10 @@ function App() {
       {/* <Probando/> */}
       {/*  <span>{modelo}</span> */}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 
 /* 
 .map((item)=>
