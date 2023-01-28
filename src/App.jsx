@@ -24,8 +24,6 @@ function App() {
     setModelo(modeloSel)
   }
 
-  const default_iterator = (string_brand) => string_brand
-
   const marcasEquipos = [
     {
       id: 0,
@@ -42,7 +40,11 @@ function App() {
         { marca: 'PCBOX' },
       ],
 
-      iterator: (hash_brand) => hash_brand.marca,
+      get iterator() {
+        const accessor_mapping = hash_brand => hash_brand.marca
+
+        this.marcas.map(accessor_mapping)
+      },
     },
     {
       id: 1,
