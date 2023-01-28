@@ -3,14 +3,15 @@ import './index.css'
 import Probando from "./Probando";
 
 function App() {
-  const [equipo, setEquipo] = useState('');
+  const [device, setDevice] = useState('');
   const [marca, setMarca] = useState('');
   const [modelo, setModelo] = useState('');
 
 
-  const handleEquipo = (e) =>{
-    let equipoSel = e.target.value;
-    setEquipo(equipoSel)
+  const handleDevice = (e) =>{
+    let device = e.target.value;
+
+    setDevice(device)
   }
 
   const handleMarca = (e) =>{
@@ -119,7 +120,7 @@ const modelosCelular = [{
   return (
     <div className='container'>
 
-      <select name="equipos" id='' onClick={handleEquipo}>
+      <select name="equipos" id='' onClick={handleDevice}>
         <option value="">EQUIPO A REPARAR</option>
         {marcasEquipos.map((item)=>
           <option key={item.id} value={item.equipo}>{item.equipo}</option>
