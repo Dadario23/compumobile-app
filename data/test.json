@@ -1,0 +1,17 @@
+[
+    {"type":"phone","brand":"samsung","model":"modelo-0A"},
+    {"type":"phone","brand":"marca-1","model":"modelo-J"},
+    {"type":"phone","brand":"motorolla","model":"modelo-Prime"},
+
+    {"device":"tablet","brand":"samung","model":"modelo-0"},
+    {"device":"tablet","brand":"motorolla","model":"max"},
+    {"device":"tablet","brand":"marca-DD","model":"modelo-2"},
+
+    {"device":"dispositivo-0","brand":"marca-0","model":"modelo-0"},
+    {"device":"dispositivo-1","brand":"marca-1","model":"modelo-1"},
+    {"device":"dispositivo-2","brand":"marca-2","model":"modelo-2"},
+
+    {"device":"dispositivo-0","brand":"marca-0","model":"modelo-0"},
+    {"device":"dispositivo-1","brand":"marca-1","model":"modelo-1"},
+    {"device":"dispositivo-2","brand":"marca-2","model":"modelo-2"}
+]

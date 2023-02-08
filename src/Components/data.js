@@ -12,13 +12,17 @@ export const data = {
                 xiaomi: ['A2 LITE','MI 2 LITE','MI 8 LITE','MI 8','MI A2','REDMI NOTE 7','XIAOMI REDMI 7','XIAOMI REDMI 7A','NOTE 6 PRO'], 
                 generic: ['GENERICO']}} ,
         tablet: {
-            marcas: ['IPAD','SAMSUNG','LENOVO','PHILCO','GADNIC','BGH','LG','X-VIEW','AMAZON','NOGANET','CHINA'],
+            marcas: ['IPAD','SAMSUNG','LENOVO','ACER','EXO','GADNIC','BGH','LG','X-VIEW','AMAZON','NOGANET','CHINA'],
             modelos: {
                 ipad: ['IPAD','IPAD 2','IPAD 3G','IPAD 4G','IPAD 5G','IPAD 6G','IPAD 7G','IPAD 8G','IPAD 9G','MINI','MINI 2','MINI 3','MINI 4','MINI 5','MINI 6','PRO 9.7','PRO 10.5','PRO 12.9','PRO 12.9 2G','PRO 12.9 3G','PRO 12.9 4G','PRO 12.9 5G','PRO 11','PRO 11 2G','PRO 11 3G', 'AIR','AIR 2G','AIR 3G','AIR 4G'], 
-                samsung: ['TAB 2','TAB 3','TAB 4'], 
-                lenovo: ['PEPITO'], 
-                philco: ['PEPITO'], 
-                gadnic: ['PROBANDO','QUE','ONDA'], 
+                samsung: ['GALAXY TAB 2','GALAXY TAB 3','GALAXY TAB 4','GALAXY TAB A8 LTE','GALAXY TAB A8 WIFI','GALAXY TAB A7 LITE','GALAXY TAB A7','GALAXY TAB A','GALAXY TAB A S-PEN','GALAXY TAB E','GALAXY TAB S','GALAXY TAB S8 ULTRA','GALAXY TAB S8+','GALAXY TAB S8+ 5G','GALAXY TAB S8','GALAXY TAB S8 5G','GALAXY TAB S7 FE','GALAXY TAB S7+','GALAXY TAB S7 LTE','GALAXY TAB S6 LITE','GALAXY TAB S6','GALAXY TAB S5E','GALAXY TAB S4'], 
+                lenovo: ['Lenovo Yoga Tablet 10.1','A10-70 A7600','A7-30 A3300','A7-50 A3500',
+                 'A8-50 A5500','Ideapad MIIX 310','MiiX 510','Tab 2 A10-70','Tab 2 A7-10',    'Tab 2 A7-30','Tab 2 X30F','Tab 4 10','Tab 4 8','Tab P11 Pro','Tab P12 Pro',
+                'Tab S8','TAB3 10 Business','TAB3 7','TAB3 8','Yoga Book','Yoga Tab 13',        'Yoga Tab 3 Plus','Yoga Tab 3 Pro','Yoga Tablet 10 HD+','Yoga Tablet 2 8.0',
+                'Yoga Tablet 2 Pro'], 
+                acer: ['Acer Iconia A3','Iconia One 10','Iconia One 7','Iconia One 8',          'Iconia Tab 10 2016','Iconia Tab 7','Iconia Tab 8 W','Predator 8','Switch Alpha 12'],
+                exo: ['EXO Wave i726','EXO WAVE I101 T1 4G LTE','Rugged R9 - 4G'], 
+                gadnic: ['Taurus Phone Gamer 3G 10"',' Phone-7 Gamer 3G 7"','Kids 3G 7"','Kalix Phone Gamer 4G LTE 10"','Cygnus 3G 10"','Indus Phone 3G 7"'], 
                 bgh: ['PROBANDO','QUE','ONDA'], 
                 lg: ['PROBANDO','QUE','ONDA'], 
                 xview: ['GENERICO'],
@@ -27,11 +31,11 @@ export const data = {
                 china: ['7 PULGADAS','8 PULGADAS','8,5 PULGADAS','10 PULGADAS']}
                 },
         notebook: {
-            marcas: ['DELL','ACER','APPLE','HP','EXO','COMPAQ','SONY','BGH','BANGHO','GENERICO'],
-            modelos: {dell:['MARCA DELL 1','MARCA DELL 2','MARCA DELL 3','MARCA DELL 4','MARCA DELL 5','MARCA DELL 6'], acer:['MARCA ACER 1','MARCA ACER 2','MARCA ACER 3','MARCA ACER 4','MARCA ACER 5','MARCA ACER 6',], apple:['MARCA APPLE 1','MARCA APPLE 2','MARCA APPLE 3','MARCA APPLE 4','MARCA APPLE 5',], hp: ['MARCA HP 1','MARCA HP 2','MARCA HP 3','MARCA HP 4','MARCA HP 5','MARCA HP 6',], exo: ['MARCA EXO 1','MARCA EXO 2','MARCA EXO 3','MARCA EXO 4','MARCA EXO 5','MARCA EXO 6',], compaq: ['COMPAQ 1','COMPAQ 1','COMPAQ 1','COMPAQ 1','COMPAQ 1',], sony: ['SONY 1','SONY 1','SONY 1','SONY 1','SONY 1',], bgh: ['BGH 1','BGH 1','BGH 1','BGH 1','BGH 1','BGH 1','BGH 1',], bangho: ['BANGHO 1','BANGHO 1','BANGHO 1','BANGHO 1','BANGHO 1','BANGHO 1',], generic: ['GENERICO']}
+            marcas: ['DELL','ACER','APPLE','HP','EXO','COMPAQ','SONY','BGH','BANGHO','GENERICA'],
+            modelos: {dell:['GENERICO'], acer:['GENERICO'], apple:['GENERICO'], hp: ['GENERICO'], exo: ['GENERICO'], compaq: ['GENERICO'], sony: ['GENERICO'], bgh: ['GENERICO'], bangho: ['GENERICO'], generic: ['GENERICO']}
         },
         pc: {
-            marcas: ['GENERICO'],
+            marcas: ['GENERICA'],
             modelos: {generic: ['GENERICO']}
         },
         /* failures: ['NO ENCIENDE', 'NO CARGA', 'SE MOJO', 'ETC'] */

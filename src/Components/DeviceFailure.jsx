@@ -24,7 +24,7 @@ export default function DeviceFailure({ resetForm,failureName, setFailureName,de
         'SE GOLPEÓ',
         'DEJÓ DE ENCENDER',
         'NO CARGA',
-        'DEJO DE ANDAR EL TACTIL',
+        'NO FUNCIONA EL TACTIL',
         'PANTALLA ROTA',
         'NO DURA LA BATERIA',
         'SE APAGA Y/O SE REINICIA',
@@ -39,10 +39,9 @@ export default function DeviceFailure({ resetForm,failureName, setFailureName,de
         'NO LEE LA MEMORIA MICRO SD',
         'NO RECUERDO EL PATRON',
         'NO RECUERDO LA CUENTA',
-        'SE QUEDE EN EL LOGO'
+        'SE QUEDE EN EL LOGO',
+        'OTRAS FALLAS'
       ];
-
-      /* const [failureName, setFailureName] = React.useState([]); */
 
   const handleChange = (event) => {
     const {
@@ -52,20 +51,16 @@ export default function DeviceFailure({ resetForm,failureName, setFailureName,de
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
-  };
+  };  
 
-  const onSubmit = (data) => {
-    
-  }
-
-  const url = `https://api.whatsapp.com/send?phone=1135664895&       text=Hola%20*COMPUMOBILE*%20tengo%20un%20*${deviceSelected}*%20*${brandSelected}*%20*${modelSelected}*%20el%20cual%20*${failureName}*%20y%20necesito%20que%20lo%20revisen%20y%20presupuesten%20cuanto%20antes,%20muchisimas%20gracias.`
+  const url = `https://api.whatsapp.com/send?phone=1135664895&       text=Hola%20*COMPUMOBILE*%20tengo%20un/una%20*${deviceSelected}*%20*${brandSelected}*%20modelo%20*${modelSelected}*%20el%20cual%20*${failureName}*%20y%20necesito%20que%20lo%20revisen%20y%20presupuesten%20cuanto%20antes,%20muchisimas%20gracias.`
   
 
   return (
     <div>
-      <FormControl fullWidth onSubmit={onSubmit} >
+      <FormControl fullWidth >
         <InputLabel id="demo-multiple-checkbox-label">Falla</InputLabel>
-        <Select
+        <Select 
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
@@ -83,9 +78,11 @@ export default function DeviceFailure({ resetForm,failureName, setFailureName,de
             </MenuItem>))) : null
           }
         </Select>
-        <span>*Puedes elegir una o mas opciones</span>
+        
+       <span>*Puedes elegir una o mas opciones</span>              
+        
         <br/>
-         <br/>                         
+        <br/>                         
         <div >
           {
             failureName.length !== 0 ? (

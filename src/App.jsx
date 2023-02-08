@@ -9,13 +9,32 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-
 import { useState } from 'react'
 import './index.css'
 import { data } from './Components/data'
 
 // change database
 // import { data } from './Components/data/angel'
+
+/* const form = {
+  telefonos: {
+    issues: ["antena cell"],
+
+    devices: [
+      {iphone: [model: "a", model: "b"]},
+      {samsung: ["jprime", "X1"]}
+    ],
+  },
+  tablets: {
+    issues: ["antena wifi", "error imaginario 1"],
+
+    devices: [
+      {iphone: ["pro", "proMax"]},
+      {generic: ["Generic China", "Generic Taiwan"]},
+    ]
+  }, 
+
+} */
 import DeviceFailure from "./Components/DeviceFailure";
 
 
@@ -83,7 +102,8 @@ function App() {
   const modelsTabletsIpad = data.devices.tablet.modelos.ipad;
   const modelsTabletsSamsung = data.devices.tablet.modelos.samsung;
   const modelsTabletsLenovo = data.devices.tablet.modelos.lenovo;
-  const modelsTabletsPhilco = data.devices.tablet.modelos.philco;
+  const modelsTabletsAcer = data.devices.tablet.modelos.acer;
+  const modelsTabletsExo = data.devices.tablet.modelos.exo;
   const modelsTabletsGadnic = data.devices.tablet.modelos.gadnic;
   const modelsTabletsBgh = data.devices.tablet.modelos.bgh;
   const modelsTabletsLg = data.devices.tablet.modelos.lg;
@@ -106,12 +126,14 @@ function App() {
   const modelsPcGenerico = data.devices.pc.modelos.generic;
 
   return (
-    <div >
+    
+    <div sx={{display: 'flex', justifyContent: 'center'}}>      
       <Button sx={{width: '100%',
               height: '100vh',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'}} onClick={handleClickOpen}>Reparar mi Equipo</Button>
+              justifyContent: 'center'}} 
+              onClick={handleClickOpen}><h2>REPARAR MI EQUIPO</h2></Button>
           <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
           <DialogTitle>Formulario de Reparación</DialogTitle>
           <DialogContent>
@@ -137,7 +159,7 @@ function App() {
               onChange={handleChangeBrand}>   
               {
                 brandsCellPhones.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-              }
+              }56rty
             </Select>
           </FormControl> : null
         }
@@ -305,13 +327,12 @@ function App() {
               label="model"
               onChange={handleChangeModel}>  
              {
-              modelsTabletsLenovo.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
+              modelsTabletsLenovo.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
              }
             </Select>
           </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'PHILCO' ? 
+        }{
+          deviceSelected === 'TABLET' && brandSelected === 'ACER' ? 
           <FormControl fullWidth sx={{  mb: 2 }}>
             <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
             <Select 
@@ -319,7 +340,21 @@ function App() {
               label="model"
               onChange={handleChangeModel}>  
              {
-              modelsTabletsPhilco.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
+              modelsTabletsAcer.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
+             }
+            </Select>
+          </FormControl> : null
+        }
+        {
+          deviceSelected === 'TABLET' && brandSelected === 'EXO' ? 
+          <FormControl fullWidth sx={{  mb: 2 }}>
+            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+            <Select 
+              value={modelSelected}
+              label="model"
+              onChange={handleChangeModel}>  
+             {
+              modelsTabletsExo.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
              }
             </Select>
           </FormControl> : null
@@ -333,7 +368,7 @@ function App() {
               label="model"
               onChange={handleChangeModel}>  
              {
-              modelsTabletsGadnic.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
+              modelsTabletsGadnic.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
              }
             </Select>
           </FormControl> : null
@@ -563,7 +598,7 @@ function App() {
           </FormControl> : null
         }
         {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'GENERICO' ? 
+          deviceSelected === 'NOTEBOOK' && brandSelected === 'GENERICA' ? 
           <FormControl fullWidth sx={{  mb: 2 }}>
             <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
             <Select 
@@ -592,7 +627,7 @@ function App() {
           </FormControl> : null
         }   
         {
-          deviceSelected === 'PC' && brandSelected === 'GENERICO' ? 
+          deviceSelected === 'PC' && brandSelected === 'GENERICA' ? 
           <FormControl fullWidth sx={{  mb: 2 }}>
             <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
             <Select 
@@ -616,6 +651,7 @@ function App() {
         </DialogActions>
       </Dialog>
     </div>
+    
     )
   }  
   
