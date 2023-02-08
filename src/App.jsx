@@ -13,6 +13,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react'
 import './index.css'
 import { data } from './Components/data'
+
+// change database
+// import { data } from './Components/data/angel'
 import DeviceFailure from "./Components/DeviceFailure";
 
 
@@ -109,9 +112,9 @@ function App() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'}} onClick={handleClickOpen}>Reparar mi Equipo</Button>
-      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-        <DialogTitle>Formulario de Reparación</DialogTitle>
-        <DialogContent>
+          <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+          <DialogTitle>Formulario de Reparación</DialogTitle>
+          <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <FormControl fullWidth sx={{  mb: 2, mt: 2 }}>
           <InputLabel id="demo-simple-select-label">Equipo</InputLabel>
