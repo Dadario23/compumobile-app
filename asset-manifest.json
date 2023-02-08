@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/compumobile-app/static/css/main.67fde825.css",
+    "main.js": "/compumobile-app/static/js/main.acd0e789.js",
+    "index.html": "/compumobile-app/index.html",
+    "main.67fde825.css.map": "/compumobile-app/static/css/main.67fde825.css.map",
+    "main.acd0e789.js.map": "/compumobile-app/static/js/main.acd0e789.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67fde825.css",
+    "static/js/main.acd0e789.js"
+  ]
+}
