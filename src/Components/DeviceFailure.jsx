@@ -54,7 +54,7 @@ export default function DeviceFailure({ resetForm,failureName, setFailureName,de
   };  
 
   const url = 
-  `https://api.whatsapp.com/send/?phone=541135664895&text=Hola%20*COMPUMOBILE*%20tengo%20un%20*${deviceSelected}*%20*${brandSelected}*%20modelo%20*${modelSelected}*%20el%20cual%20*${failureName}*%20y%20necesito%20que%20lo%20revisen%20y%20presupuesten%20cuanto%20antes,%20muchisimas%20gracias.`
+  `https://api.whatsapp.com/send/?phone=541150610043&text=Hola%20*COMPUMOBILE*%20tengo%20un%20*${deviceSelected}*%20*${brandSelected}*%20modelo%20*${modelSelected}*%20el%20cual%20*${failureName}*%20y%20necesito%20que%20lo%20revisen%20y%20presupuesten%20cuanto%20antes,%20muchisimas%20gracias.`
   
 
   return (
