@@ -1,93 +1,67 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 import { Box } from "@mui/material";
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
-import { useState } from 'react'
-import './index.css'
-import { data } from './Components/data'
+import { useState } from "react";
+import "./index.css";
+import { data } from "./Components/data";
 
-// change database
-// import { data } from './Components/data/angel'
-
-/* const form = {
-  telefonos: {
-    issues: ["antena cell"],
-
-    devices: [
-      {iphone: [model: "a", model: "b"]},
-      {samsung: ["jprime", "X1"]}
-    ],
-  },
-  tablets: {
-    issues: ["antena wifi", "error imaginario 1"],
-
-    devices: [
-      {iphone: ["pro", "proMax"]},
-      {generic: ["Generic China", "Generic Taiwan"]},
-    ]
-  }, 
-
-} */
 import DeviceFailure from "./Components/DeviceFailure";
 
-
-
 function App() {
-  const [deviceSelected, setDeviceSelected] = useState('');
-  const [brandSelected, setBrandSelected] = useState('');
-  const [modelSelected, setModelSelected] = useState('');
-  const [failureName, setFailureName] = useState([]);    
-  
+  const [deviceSelected, setDeviceSelected] = useState("");
+  const [brandSelected, setBrandSelected] = useState("");
+  const [modelSelected, setModelSelected] = useState("");
+  const [failureName, setFailureName] = useState([]);
 
   const [open, setOpen] = useState(false);
 
-  const handleChangeDevice = (e)=>{
-    let device = e.target.value.toUpperCase()
+  const handleChangeDevice = (e) => {
+    let device = e.target.value.toUpperCase();
     setDeviceSelected(device);
-    setBrandSelected('');
-    setModelSelected('');
-  }
+    setBrandSelected("");
+    setModelSelected("");
+  };
   const resetForm = () => {
-    setDeviceSelected('');
-    setBrandSelected('');
-    setModelSelected('');
+    setDeviceSelected("");
+    setBrandSelected("");
+    setModelSelected("");
     setFailureName([]);
-  }
-  const handleChangeBrand = (e)=>{
-    let brand = e.target.value
-    setBrandSelected(brand)
-    setModelSelected('');
-    
-  }
+  };
+  const handleChangeBrand = (e) => {
+    let brand = e.target.value;
+    setBrandSelected(brand);
+    setModelSelected("");
+  };
 
   const handleChangeModel = (e) => {
     let model = e.target.value;
     setModelSelected(model);
-    setFailureName([])
-  }   
+    setFailureName([]);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
+    if (reason !== "backdropClick") {
       setOpen(false);
     }
   };
-   
+
   const devices = Object.keys(data.devices);
 
   const brandsCellPhones = data.devices.celular.marcas;
@@ -131,523 +105,610 @@ function App() {
   const modelsPcGenerico = data.devices.pc.modelos.generic;
 
   return (
-    
-    <div sx={{display: 'flex', justifyContent: 'center'}}>      
-      <Button sx={{width: '100%',
-              height: '100vh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'}} 
-              onClick={handleClickOpen}><h2>REPARAR MI EQUIPO</h2></Button>
-          <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-          <DialogTitle>Formulario de Reparación</DialogTitle>
-          <DialogContent>
-          <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <FormControl fullWidth sx={{  mb: 2, mt: 2 }}>
-          <InputLabel id="demo-simple-select-label">Equipo</InputLabel>
-          <Select 
-          value={deviceSelected}
-          label="device"
-           onChange={handleChangeDevice}>    
-          {
-            devices.map((item,idx)=> <MenuItem key={idx} value={item.toUpperCase()}>{item.toUpperCase()}</MenuItem>)   
-          }
-          </Select>
-        </FormControl>
-        {
-          deviceSelected === 'CELULAR' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Marca</InputLabel>
-            <Select 
-              value={brandSelected}
-              label="brand"
-              onChange={handleChangeBrand}>   
-              {
-                brandsCellPhones.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-              }56rty
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'CELULAR' && brandSelected === 'IPHONE' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesIphone.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'CELULAR' && brandSelected === 'SAMSUNG' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesSamsung.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }        
-        {
-          deviceSelected === 'CELULAR' && brandSelected === 'MOTOROLA' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesMotorola.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'CELULAR' && brandSelected === 'LG' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesLg.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'CELULAR' && brandSelected === 'HUAWEI' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesHuawei.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        { 
-          deviceSelected === 'CELULAR' && brandSelected === 'ALCATEL' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesAlcatel.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        { 
-          deviceSelected === 'CELULAR' && brandSelected === 'XIAOMI' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesXiaomi.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        { 
-          deviceSelected === 'CELULAR' && brandSelected === 'GENERICO' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsCellPhonesGenerico.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        
-        {
-          deviceSelected === 'TABLET' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Marca</InputLabel>
-            <Select 
-              value={brandSelected}
-              label="brand"
-              onChange={handleChangeBrand}>  
-             {
-              brandsTablets.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }        
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'IPAD' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsIpad.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'SAMSUNG' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsSamsung.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'LENOVO' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsLenovo.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }{
-          deviceSelected === 'TABLET' && brandSelected === 'ACER' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsAcer.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'EXO' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsExo.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'GADNIC' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsGadnic.map((item, idx)=> <MenuItem key={idx} value={item}>{item.toUpperCase()}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'BGH' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsBgh.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'LG' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsLg.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }        
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'X-VIEW' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsXview.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'AMAZON' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsAmazon.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'NOGANET' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsNoganet.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'TABLET' && brandSelected === 'CHINA' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsTabletsChina.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Marca</InputLabel>
-            <Select 
-              value={brandSelected}
-              label="brand"
-              onChange={handleChangeBrand}>  
-             {
-              brandsNotebooks.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'DELL' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksDell.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'ACER' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksAcer.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'APPLE' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksApple.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'HP' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksHp.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'EXO' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksExo.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'COMPAQ' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksCompaq.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'SONY' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksSony.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'BGH' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksBgh.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'BANGHO' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksBangho.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected === 'NOTEBOOK' && brandSelected === 'GENERICA' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsNotebooksGenerico.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        
-        {
-          deviceSelected === 'PC' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Marca</InputLabel>
-            <Select 
-              value={brandSelected}
-              label="brand"
-              onChange={handleChangeBrand}>  
-             {
-              brandsPC.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }   
-        {
-          deviceSelected === 'PC' && brandSelected === 'GENERICA' ? 
-          <FormControl fullWidth sx={{  mb: 2 }}>
-            <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
-            <Select 
-              value={modelSelected}
-              label="model"
-              onChange={handleChangeModel}>  
-             {
-              modelsPcGenerico.map((item, idx)=> <MenuItem key={idx} value={item}>{item}</MenuItem>)
-             }
-            </Select>
-          </FormControl> : null
-        }
-        {
-          deviceSelected && brandSelected && modelSelected ? <DeviceFailure resetForm={resetForm}failureName={failureName} setFailureName={setFailureName} deviceSelected={deviceSelected} brandSelected={brandSelected} modelSelected={modelSelected}/> : null         
-        }
+    <div sx={{ display: "flex", justifyContent: "center" }}>
+      <Button
+        sx={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onClick={handleClickOpen}
+      >
+        <h2>REPARAR MI EQUIPO</h2>
+      </Button>
+      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+        <DialogTitle>Formulario de Reparación</DialogTitle>
+        <DialogContent>
+          <Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
+            <FormControl fullWidth sx={{ mb: 2, mt: 2 }}>
+              <InputLabel id="demo-simple-select-label">Equipo</InputLabel>
+              <Select
+                value={deviceSelected}
+                label="device"
+                onChange={handleChangeDevice}
+              >
+                {devices.map((item, idx) => (
+                  <MenuItem key={idx} value={item.toUpperCase()}>
+                    {item.toUpperCase()}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            {deviceSelected === "CELULAR" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Marca</InputLabel>
+                <Select
+                  value={brandSelected}
+                  label="brand"
+                  onChange={handleChangeBrand}
+                >
+                  {brandsCellPhones.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                  56rty
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "IPHONE" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesIphone.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "SAMSUNG" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesSamsung.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "MOTOROLA" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesMotorola.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "LG" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesLg.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "HUAWEI" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesHuawei.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "ALCATEL" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesAlcatel.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "XIAOMI" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesXiaomi.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "CELULAR" && brandSelected === "GENERICO" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsCellPhonesGenerico.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+
+            {deviceSelected === "TABLET" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Marca</InputLabel>
+                <Select
+                  value={brandSelected}
+                  label="brand"
+                  onChange={handleChangeBrand}
+                >
+                  {brandsTablets.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "IPAD" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsIpad.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "SAMSUNG" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsSamsung.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "LENOVO" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsLenovo.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item.toUpperCase()}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "ACER" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsAcer.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item.toUpperCase()}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "EXO" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsExo.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item.toUpperCase()}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "GADNIC" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsGadnic.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item.toUpperCase()}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "BGH" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsBgh.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "LG" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsLg.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "X-VIEW" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsXview.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "AMAZON" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsAmazon.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "NOGANET" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsNoganet.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "TABLET" && brandSelected === "CHINA" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsTabletsChina.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Marca</InputLabel>
+                <Select
+                  value={brandSelected}
+                  label="brand"
+                  onChange={handleChangeBrand}
+                >
+                  {brandsNotebooks.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "DELL" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksDell.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "ACER" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksAcer.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "APPLE" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksApple.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "HP" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksHp.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "EXO" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksExo.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "COMPAQ" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksCompaq.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "SONY" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksSony.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "BGH" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksBgh.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "BANGHO" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksBangho.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "NOTEBOOK" && brandSelected === "GENERICA" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsNotebooksGenerico.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+
+            {deviceSelected === "PC" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Marca</InputLabel>
+                <Select
+                  value={brandSelected}
+                  label="brand"
+                  onChange={handleChangeBrand}
+                >
+                  {brandsPC.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected === "PC" && brandSelected === "GENERICA" ? (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="demo-simple-select-label">Modelo</InputLabel>
+                <Select
+                  value={modelSelected}
+                  label="model"
+                  onChange={handleChangeModel}
+                >
+                  {modelsPcGenerico.map((item, idx) => (
+                    <MenuItem key={idx} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : null}
+            {deviceSelected && brandSelected && modelSelected ? (
+              <DeviceFailure
+                resetForm={resetForm}
+                failureName={failureName}
+                setFailureName={setFailureName}
+                deviceSelected={deviceSelected}
+                brandSelected={brandSelected}
+                modelSelected={modelSelected}
+              />
+            ) : null}
           </Box>
         </DialogContent>
         <DialogActions>
@@ -656,10 +717,7 @@ function App() {
         </DialogActions>
       </Dialog>
     </div>
-    
-    )
-  }  
-  
-  export default App
-  
-  
+  );
+}
+
+export default App;
